@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'helpers/string_formatter'
+require 'badgeoverflow/helpers/string_formatter'
 
 describe StringFormatter do
   describe "#truncate" do

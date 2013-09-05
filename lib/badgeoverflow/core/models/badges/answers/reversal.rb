@@ -1,5 +1,5 @@
 require_relative '../badge'
-require 'helpers/hash_struct'
+require 'badgeoverflow/helpers'
 
 class Reversal < Badge
   REQUIRED_SCORE = 20

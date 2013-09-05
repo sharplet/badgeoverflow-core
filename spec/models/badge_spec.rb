@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'models/badges/badge'
+require 'badgeoverflow/core/models/badges/badge'
 require 'json'
 require 'ostruct'
 

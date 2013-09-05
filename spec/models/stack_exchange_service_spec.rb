@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'models/stack_exchange_service'
+require 'badgeoverflow/core/models/stack_exchange_service'
 
 describe StackExchangeService, '#fetch' do
   BASE_URL = "http://api.stackexchange.com/2.1"
