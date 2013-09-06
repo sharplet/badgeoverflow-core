@@ -17,10 +17,8 @@ class Tenacious < Badge
       fetch_all_pages: true
     })
 
-    total_answers = answers.length
-
-    # Get array of zero score accepted answers
-    answers.keep_if { |answer| answer['is_accepted'] && answer['score'] == 0}
+    # Get array of accepted answers
+    answers.keep_if { |answer| answer['is_accepted']}
 
     # Get all questions related to those answers
     question_ids = answers.map { |answer| answer['question_id'] }
@@ -37,11 +35,16 @@ class Tenacious < Badge
       answer['question'] = questions.find { |question| question['question_id'] == answer['question_id'] }
     end
 
-    # Make array of accepted answers that are not answers to your own questions
+    # Make array of accepted answers that are not answers to your own questions (self-accepted)
     answers.keep_if { |answer| answer['question']['owner']['user_id'] != self.user_id }
 
+    total_accepted_answers = answers.length
+
+    # Get accepted answers with a score of zero
+    answers.keep_if { |answer| answer['score'] == 0 }
+
     zero_score_accepted_answers = answers.length
-    percentage_of_answers = zero_score_accepted_answers.to_f / total_answers * 100
+    percentage_of_answers = zero_score_accepted_answers.to_f / total_accepted_answers * 100
     formatted_percentage = "%.1f%%" % [percentage_of_answers]
     remaining_accepted_answers = required_accepted_answers - zero_score_accepted_answers
 
