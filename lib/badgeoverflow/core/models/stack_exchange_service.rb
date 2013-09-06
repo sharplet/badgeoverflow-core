@@ -4,9 +4,17 @@ require 'json'
 class StackExchangeService
   attr_reader :site, :api_version
 
+  def api_key=(key)
+    default_params[:key] = key
+  end
+
   def initialize(site = 'stackoverflow', api_version = 2.1)
     @site = site
     @api_version = api_version
+
+    if File.exist?('config/stack_exchange.yml')
+      api_key = YAML.load(File.read('config/stack_exchange.yml'))['api_key']
+    end
   end
 
   # Fetches 1 or more of a given resource.
@@ -100,7 +108,7 @@ class StackExchangeService
   end
 
   def default_params
-    { site: site, pagesize: 30 }
+    @default_params ||= { site: site, pagesize: 30 }
   end
 
   def param_string(params)
