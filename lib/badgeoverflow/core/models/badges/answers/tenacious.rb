@@ -45,8 +45,14 @@ class Tenacious < Badge
 
     zero_score_accepted_answers = answers.length
     percentage_of_answers = zero_score_accepted_answers.to_f / total_accepted_answers * 100
-    formatted_percentage = "%.1f%%" % [percentage_of_answers]
     remaining_accepted_answers = required_accepted_answers - zero_score_accepted_answers
+
+    # format percentage with 1 decimal place (unless decimal place is 0, then remove trailing .0)
+    formatted_percentage = "%.1f%%" % [percentage_of_answers]
+    tenths = (percentage_of_answers * 10).to_i % 10;
+    if (tenths == 0)
+      formatted_percentage.sub!(/\.0/, '')
+    end
 
     intro_component = "More than #{required_accepted_answers - 1} zero score accepted answers and #{required_percentage}% of total."
     answers_component = ""
