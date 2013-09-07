@@ -4,6 +4,10 @@ require 'badgeoverflow/helpers'
 class Reversal < Badge
   REQUIRED_SCORE = 20
 
+  def progress_title
+    "You're getting close to..."
+  end
+
   def progress_description
     eligible_answers = answers_scoring_in(1...REQUIRED_SCORE)
 
