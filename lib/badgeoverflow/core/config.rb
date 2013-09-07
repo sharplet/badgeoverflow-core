@@ -4,7 +4,7 @@ class BadgeOverflowConfig
   attr_reader :config_file
 
   def self.instance
-    @@instance ||= new('config/users.yml')
+    @@instance ||= new('config/badgeoverflow.yml')
   end
 
   def self.user_id
