@@ -20,7 +20,7 @@ class Reversal < Badge
 
       question = eligible_answer.question
 
-      "Your answer on \"#{question.title.truncate(60).link_to(question.link)}\" has #{score_str}. #{remaining_str} to go!"
+      "Your answer on question \"#{question.title.truncate(55).link_to(question.link)}\" of #{question.score} score has #{score_str}. #{remaining_str} to go!"
     else
       super + ". You haven't answered any questions with a score of -5!"
     end
