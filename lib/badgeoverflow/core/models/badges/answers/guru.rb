@@ -27,7 +27,7 @@ class Guru < Badge
       score_str = "#{score} " + "vote".pluralize(score, "votes")
       remaining_str = "#{remaining} " + "vote".pluralize(remaining, "votes")
 
-      self.progress_description = "Your answer to question \"#{title.truncate(70).link_to(link)}\" has #{score_str}. #{remaining_str} to go!"
+      self.progress_description = "Your accepted answer to \"#{title.truncate(55).link_to(link)}\" has #{score_str}. #{remaining_str} to go!"
     else
       self.progress_description = "Accepted answer and score of #{required_votes} or more. You have not answered any questions yet!"
     end
