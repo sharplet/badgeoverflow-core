@@ -8,8 +8,8 @@ class StackExchangeService
     @site = site
     @api_version = api_version
 
-    if File.exist?('config/stack_exchange.yml')
-      @api_key = YAML.load(File.read('config/stack_exchange.yml'))['api_key']
+    if File.exist?('config/badgeoverflow.yml')
+      @api_key = YAML.load(File.read('config/badgeoverflow.yml'))['api_key']
     end
   end
 
