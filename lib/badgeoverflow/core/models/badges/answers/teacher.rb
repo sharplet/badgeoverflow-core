@@ -2,7 +2,7 @@ require_relative '../badge'
 
 class Teacher < Badge
 
-  def progress_description
+  def calculate_progress!
     answer = service.fetch('users', 'answers', {
       ids: user_id,
       sort: 'votes',
@@ -11,9 +11,9 @@ class Teacher < Badge
     }).first
 
     if answer
-      "Answered first question with score of 1 or more. None of your answers have any upvotes yet!"
+      self.progress_description = "Answered first question with score of 1 or more. None of your answers have any upvotes yet!"
     else
-      "Answered first question with score of 1 or more. You have not answered any questions yet!"
+      self.progress_description = "Answered first question with score of 1 or more. You have not answered any questions yet!"
     end
   end
 

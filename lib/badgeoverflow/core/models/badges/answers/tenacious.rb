@@ -9,7 +9,7 @@ class Tenacious < Badge
     "You're getting close to..."
   end
 
-  def progress_description
+  def calculate_progress!
     answers = service.fetch('users', 'answers', {
       ids: user_id,
       sort: 'votes',
@@ -61,7 +61,7 @@ class Tenacious < Badge
       answers_component = "You need 0 more answers"
     end
 
-    "%s %s %s" % [intro_component, answers_component, percentage_component]
+    self.progress_description = "%s %s %s" % [intro_component, answers_component, percentage_component]
   end
 
   def required_accepted_answers

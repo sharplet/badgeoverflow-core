@@ -8,7 +8,7 @@ class Reversal < Badge
     "You're getting close to..."
   end
 
-  def progress_description
+  def calculate_progress!
     eligible_answers = answers_scoring_in(1...REQUIRED_SCORE)
 
     map_answer_questions!(eligible_answers)
@@ -24,9 +24,9 @@ class Reversal < Badge
 
       question = eligible_answer.question
 
-      "Your answer on question \"#{question.title.truncate(55).link_to(question.link)}\" of #{question.score} score has #{score_str}. #{remaining_str} to go!"
+      self.progress_description = "Your answer on question \"#{question.title.truncate(55).link_to(question.link)}\" of #{question.score} score has #{score_str}. #{remaining_str} to go!"
     else
-      super + ". You haven't answered any questions with a score of -5!"
+      self.progress_description = "#{description}. You haven't answered any questions with a score of -5!"
     end
   end
 

@@ -9,7 +9,7 @@ class FavoriteQuestion < Badge
     "You're getting close to..."
   end
 
-  def progress_description
+  def calculate_progress!
     questions = service.fetch('users', 'questions', {
       ids: user_id,
       sort: 'votes',
@@ -32,9 +32,9 @@ class FavoriteQuestion < Badge
       favorites_str = "#{favorites} " + "favorite".pluralize(favorites, "favorites")
       remaining_str = "#{remaining} " + "favorite".pluralize(remaining, "favorites")
 
-      "Your question \"#{title.truncate(70).link_to(link)}\" has #{favorites_str}. #{remaining_str} to go!"
+      self.progress_description = "Your question \"#{title.truncate(70).link_to(link)}\" has #{favorites_str}. #{remaining_str} to go!"
     else
-      "Question favorited by #{required_favorites} users. You have not asked any questions yet!"
+      self.progress_description = "Question favorited by #{required_favorites} users. You have not asked any questions yet!"
     end
   end
 

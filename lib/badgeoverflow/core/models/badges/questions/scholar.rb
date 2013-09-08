@@ -2,7 +2,7 @@ require_relative '../badge'
 
 class Scholar < Badge
 
-  def progress_description
+  def calculate_progress!
     question = service.fetch('users', 'questions', {
       ids: user_id,
       sort: 'votes',
@@ -12,9 +12,9 @@ class Scholar < Badge
     }).first
 
     if question
-      "Accept an answer to one of your questions and you will be awarded this badge!"
+      self.progress_description = "Accept an answer to one of your questions and you will be awarded this badge!"
     else
-      "You have not asked any questions yet! To be awarded this badge, ask a question and accept an answer."
+      self.progress_description = "You have not asked any questions yet! To be awarded this badge, ask a question and accept an answer."
     end
   end
 

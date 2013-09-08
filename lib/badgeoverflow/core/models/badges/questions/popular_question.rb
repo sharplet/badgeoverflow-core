@@ -9,7 +9,7 @@ class PopularQuestion < Badge
     "You're getting close to..."
   end
 
-  def progress_description
+  def calculate_progress!
     questions = service.fetch('users', 'questions', {
       ids: user_id,
       sort: 'votes',
@@ -31,9 +31,9 @@ class PopularQuestion < Badge
       views_str = "#{views.with_commas} " + "view".pluralize(views, "views")
       remaining_str = "#{remaining.with_commas} " + "view".pluralize(remaining, "views")
 
-      "Your question \"#{title.truncate(70).link_to(link)}\" has #{views_str}. #{remaining_str} to go!"
+      self.progress_description = "Your question \"#{title.truncate(70).link_to(link)}\" has #{views_str}. #{remaining_str} to go!"
     else
-      "Asked a question with #{required_views.with_commas} views. You have not asked any questions yet!"
+      self.progress_description = "Asked a question with #{required_views.with_commas} views. You have not asked any questions yet!"
     end
   end
 

@@ -9,7 +9,7 @@ class NiceAnswer < Badge
     "You're getting close to..."
   end
 
-  def progress_description
+  def calculate_progress!
     answer = service.fetch('users', 'answers', {
       ids: user_id,
       sort: 'votes',
@@ -29,7 +29,7 @@ class NiceAnswer < Badge
     score_str = "#{score} " + "vote".pluralize(score, "votes")
     remaining_str = "#{remaining} " + "vote".pluralize(remaining, "votes")
 
-    "Your answer on \"#{question_title.truncate(65).link_to(link)}\" has #{score_str}. #{remaining_str} to go!"
+    self.progress_description = "Your answer on \"#{question_title.truncate(65).link_to(link)}\" has #{score_str}. #{remaining_str} to go!"
   end
 
   def required_score

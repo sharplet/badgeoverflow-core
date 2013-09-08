@@ -6,7 +6,7 @@ class SelfLearner < Badge
     "You're getting close to..."
   end
 
-  def progress_description
+  def calculate_progress!
     # Get all answers the user has, ordered by votes
     answers = service.fetch('users', 'answers', {
       ids: user_id,
@@ -47,9 +47,9 @@ class SelfLearner < Badge
       score_str = "#{score} " + "vote".pluralize(score, "votes")
       remaining_str = "#{remaining} " + "vote".pluralize(remaining, "votes")
 
-      "Your answer to your own question \"#{title.truncate(55).link_to(link)}\" has #{score_str}. #{remaining_str} to go!"
+      self.progress_description = "Your answer to your own question \"#{title.truncate(55).link_to(link)}\" has #{score_str}. #{remaining_str} to go!"
     else
-      "Answered your own question with score of #{required_score} or more. You have not answered any of your own questions yet!"
+      self.progress_description = "Answered your own question with score of #{required_score} or more. You have not answered any of your own questions yet!"
     end
   end
 

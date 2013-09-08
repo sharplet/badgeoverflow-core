@@ -6,6 +6,7 @@ class Badge
 
   attr_reader :badge_id, :user_id, :name, :description, :rank, :award_count, :badge_type, :link
   attr_reader :series, :service
+  attr_accessor :progress_description
 
   def initialize(badge_json, user_id)
     @data = badge_json
@@ -29,8 +30,11 @@ class Badge
     self.badge_id.hash ^ self.name.hash ^ self.rank.hash ^ self.user_id.hash
   end
 
+  def calculate_progress!
+  end
+
   def progress_description
-    description
+    @progress_description || description
   end
 
   def progress_title
