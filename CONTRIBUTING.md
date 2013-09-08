@@ -8,9 +8,9 @@ category (`questions/`, `answers/`, and so on).
 
 You should override two methods: `#progress_title`, which should return
 a string to be displayed above the badge name, and
-`#progress_description`, which should fetch any data required,
-calculate the progress, and return a formatted string describing the
-user's progress.
+`#calculate_progress!`, which should fetch any data required, calculate
+the progress, and set `self.progress_description` to a formatted string
+describing the user's progress.
 
 You can fetch data through the `#service` attribute (which returns an
 instance of `StackExchangeService`), and the user ID is available
