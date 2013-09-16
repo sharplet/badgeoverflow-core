@@ -1,4 +1,5 @@
 require 'sanitize'
+require 'cgi'
 
 class Badge
   include Comparable
@@ -105,6 +106,7 @@ class Badge
     end
 
     def constantise(badge_name)
+      badge_name = CGI.unescapeHTML(badge_name)
       badge_name.split(/[\W]/).map(&:capitalize).join
     end
   end
