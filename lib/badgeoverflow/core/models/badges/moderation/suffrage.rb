@@ -1,5 +1,3 @@
-# Note: Both these badges are bronze, what happens with the first_badges_in_series filter?
-
 require_relative '../badge'
 
 class Suffrage < Badge
@@ -9,4 +7,7 @@ class Suffrage < Badge
 end
 
 class VoxPopuli < Suffrage
+  def order
+    1
+  end
 end

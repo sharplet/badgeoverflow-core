@@ -6,7 +6,7 @@ class Badge
   RANK_INDEX = { "bronze" => 0, "silver" => 1, "gold" => 2 }
 
   attr_reader :badge_id, :user_id, :name, :description, :rank, :award_count, :badge_type, :link
-  attr_reader :series, :service
+  attr_reader :series, :order, :service
   attr_accessor :progress_description
 
   def initialize(badge_json, user_id)
@@ -16,8 +16,18 @@ class Badge
 
   def <=>(other_badge)
     if other_badge.kind_of? Badge
-      RANK_INDEX[self.rank] <=> RANK_INDEX[other_badge.rank]
+      rank_comparison = RANK_INDEX[self.rank] <=> RANK_INDEX[other_badge.rank]
+
+      if rank_comparison == 0
+        self.order <=> other_badge.order
+      else
+        rank_comparison
+      end
     end
+  end
+
+  def order
+    0
   end
 
   def eql?(other_badge)
