@@ -1,13 +1,13 @@
 require_relative '../badge'
 
-class Editor < Badge
+class StackOverflow::Editor < StackOverflow::Badge
   def series
     :editor
   end
 end
 
-class StrunkWhite < Editor
+class StackOverflow::StrunkWhite < StackOverflow::Editor
 end
 
-class CopyEditor < Editor
+class StackOverflow::CopyEditor < StackOverflow::Editor
 end

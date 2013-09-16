@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class Promoter < Badge
+class StackOverflow::Promoter < StackOverflow::Badge
 
   def calculate_progress!
     self.progress_description = "Offer a bounty on your own question"

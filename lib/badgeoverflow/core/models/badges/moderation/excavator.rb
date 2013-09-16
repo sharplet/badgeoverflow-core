@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class Excavator < Badge
+class StackOverflow::Excavator < StackOverflow::Badge
   def series
     :excavator
   end
 end
 
-class Archaeologist < Excavator
+class StackOverflow::Archaeologist < StackOverflow::Excavator
 end

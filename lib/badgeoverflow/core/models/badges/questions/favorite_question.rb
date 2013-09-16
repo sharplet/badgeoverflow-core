@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class FavoriteQuestion < Badge
+class StackOverflow::FavoriteQuestion < StackOverflow::Badge
   def series
     :favorite_question
   end
@@ -47,7 +47,7 @@ class FavoriteQuestion < Badge
   end
 end
 
-class StellarQuestion < FavoriteQuestion
+class StackOverflow::StellarQuestion < StackOverflow::FavoriteQuestion
   def required_favorites
     100
   end

@@ -1,12 +1,12 @@
 require_relative '../badge'
 
-class Suffrage < Badge
+class StackOverflow::Suffrage < StackOverflow::Badge
   def series
     :suffrage
   end
 end
 
-class VoxPopuli < Suffrage
+class StackOverflow::VoxPopuli < StackOverflow::Suffrage
   def order
     1
   end

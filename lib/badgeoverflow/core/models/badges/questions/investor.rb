@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class Investor < Badge
+class StackOverflow::Investor < StackOverflow::Badge
 
   def calculate_progress!
     self.progress_description = "Offer a bounty on another person's question"

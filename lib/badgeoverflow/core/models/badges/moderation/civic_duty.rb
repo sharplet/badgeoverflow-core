@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class CivicDuty < Badge
+class StackOverflow::CivicDuty < StackOverflow::Badge
   def series
     :civic_duty
   end
@@ -36,7 +36,7 @@ class CivicDuty < Badge
   end
 end
 
-class Electorate < Badge
+class StackOverflow::Electorate < StackOverflow::Badge
   def series
     :civic_duty
   end

@@ -1,13 +1,13 @@
 require_relative '../badge'
 
-class Mortarboard < Badge
+class StackOverflow::Mortarboard < StackOverflow::Badge
   def series
     :mortarboard
   end
 end
 
-class Epic < Mortarboard
+class StackOverflow::Epic < StackOverflow::Mortarboard
 end
 
-class Legendary < Mortarboard
+class StackOverflow::Legendary < StackOverflow::Mortarboard
 end

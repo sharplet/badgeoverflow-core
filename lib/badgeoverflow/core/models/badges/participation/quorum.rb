@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class Quorum < Badge
+class StackOverflow::Quorum < StackOverflow::Badge
   def series
     :quorum
   end
 end
 
-class Convention < Quorum
+class StackOverflow::Convention < StackOverflow::Quorum
 end

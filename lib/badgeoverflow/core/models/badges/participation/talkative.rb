@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class Talkative < Badge
+class StackOverflow::Talkative < StackOverflow::Badge
   def series
     :talkative
   end
 end
 
-class Outspoken < Talkative
+class StackOverflow::Outspoken < StackOverflow::Talkative
 end

@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class Caucus < Badge
+class StackOverflow::Caucus < StackOverflow::Badge
   def series
     :caucus
   end
 end
 
-class Constituent < Caucus
+class StackOverflow::Constituent < StackOverflow::Caucus
 end

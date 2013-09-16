@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class Tenacious < Badge
+class StackOverflow::Tenacious < StackOverflow::Badge
   def series
     :tenacious
   end
@@ -77,7 +77,7 @@ class Tenacious < Badge
   end
 end
 
-class  UnsungHero < Tenacious
+class StackOverflow::UnsungHero < StackOverflow::Tenacious
   def required_accepted_answers
     11 # more than 10
   end

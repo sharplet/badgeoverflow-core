@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class Guru < Badge
+class StackOverflow::Guru < StackOverflow::Badge
 
   def progress_title
     "You're getting close to..."

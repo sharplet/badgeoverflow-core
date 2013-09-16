@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class TagEditor < Badge
+class StackOverflow::TagEditor < StackOverflow::Badge
   def series
     :tag_editor
   end
 end
 
-class ResearchAssistant < TagEditor
+class StackOverflow::ResearchAssistant < StackOverflow::TagEditor
 end

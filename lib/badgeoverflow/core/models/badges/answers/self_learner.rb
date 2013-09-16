@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class SelfLearner < Badge
+class StackOverflow::SelfLearner < StackOverflow::Badge
 
   def progress_title
     "You're getting close to..."
@@ -37,13 +37,13 @@ class SelfLearner < Badge
 
     # Get first answer in array (highest score)
     answer = answers.first
-  
+
     if answer
       title = answer['question']['title']
       link = answer['link']
       score = answer['score']
       remaining = required_score - score
-    
+
       score_str = "#{score} " + "vote".pluralize(score, "votes")
       remaining_str = "#{remaining} " + "vote".pluralize(remaining, "votes")
 

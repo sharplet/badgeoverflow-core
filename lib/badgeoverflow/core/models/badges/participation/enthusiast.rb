@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class Enthusiast < Badge
+class StackOverflow::Enthusiast < StackOverflow::Badge
   def series
     :enthusiast
   end
 end
 
-class Fanatic < Enthusiast
+class StackOverflow::Fanatic < StackOverflow::Enthusiast
 end

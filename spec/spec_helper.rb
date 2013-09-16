@@ -17,6 +17,3 @@ RSpec.configure do |config|
 end
 
 require 'webmock/rspec'
-
-require_relative 'helpers/null_scheduler'
-SCHEDULER = NullScheduler.new

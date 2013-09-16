@@ -19,10 +19,10 @@ def parsed_badge_with_name(badge_name)
   JSON.parse(BADGES[badge_name])
 end
 
-describe Badge do
+describe StackOverflow::Badge do
   let(:badge_hash) { {"name" => "Badge"} }
   let(:user_id) { nil }
-  let(:badge) { Badge.new(badge_hash, user_id) }
+  let(:badge) { StackOverflow::Badge.new(badge_hash, user_id) }
 
   context "when initialised with #{parsed_badge_with_name(:Altruist)}" do
     let(:badge_hash) { parsed_badge_with_name(:Altruist) }
@@ -60,70 +60,74 @@ describe Badge do
 
   describe "::new" do
     context "with a name that is a badge subclass (Foobar < Badge)" do
-      class Foobar < Badge; end
+      module StackOverflow; class Foobar < Badge; end; end
 
       let(:badge_hash) { {"name" => "Foobar"} }
 
-      specify { expect(badge).to be_kind_of Badge }
-      specify { expect(badge).to be_kind_of Foobar }
+      specify { expect(badge).to be_kind_of StackOverflow::Badge }
+      specify { expect(badge).to be_kind_of StackOverflow::Foobar }
     end
 
     context "with a name that is not a badge subclass (Gorbypuff < OpenStruct)" do
-      class Gorbypuff < OpenStruct; end
+      module StackOverflow; class Gorbypuff < OpenStruct; end; end
 
       let(:badge_hash) { {"name" => "Gorbypuff"} }
 
-      specify { expect(badge).to be_kind_of Badge }
-      specify { expect(badge).not_to be_kind_of Gorbypuff }
+      specify { expect(badge).to be_kind_of StackOverflow::Badge }
+      specify { expect(badge).not_to be_kind_of StackOverflow::Gorbypuff }
     end
 
     context "with a name containing spaces" do
-      class NameWithSpaces < Badge; end
+      module StackOverflow; class NameWithSpaces < Badge; end; end
 
       let(:badge_hash) { {"name" => "Name With Spaces"} }
 
-      specify { expect(badge).to be_kind_of NameWithSpaces }
+      specify { expect(badge).to be_kind_of StackOverflow::NameWithSpaces }
     end
 
     context "with a name containing dashes" do
-      class NameWithDashes < Badge; end
+      module StackOverflow; class NameWithDashes < Badge; end; end
 
       let(:badge_hash) { {"name" => "Name-With-Dashes"} }
 
-      specify { expect(badge).to be_kind_of NameWithDashes }
+      specify { expect(badge).to be_kind_of StackOverflow::NameWithDashes }
     end
 
     context "with a name containing '&'" do
-      class NameWithAmp < Badge; end
+      module StackOverflow; class NameWithAmp < Badge; end; end
 
       let(:badge_hash) { {"name" => "Name & With & Amp"} }
 
-      specify { expect(badge).to be_kind_of NameWithAmp }
+      specify { expect(badge).to be_kind_of StackOverflow::NameWithAmp }
     end
 
     context "with a tag name" do
-      class TagBadge < Badge; end
+      module StackOverflow; class TagBadge < Badge; end; end
 
       let(:badge_hash) { {"name" => "tag-badge"} }
 
-      specify { expect(badge).to be_kind_of TagBadge }
+      specify { expect(badge).to be_kind_of StackOverflow::TagBadge }
     end
   end
 
   describe "::series" do
-    class BadgeInSeries < Badge
-      series :the_series
+    module StackOverflow
+      class BadgeInSeries < Badge
+        def series
+          :the_series
+        end
+      end
     end
 
     it "defines the series on all instances" do
-      badge = BadgeInSeries.new('{"name":"Badge In Series"}', nil)
+      badge = StackOverflow::BadgeInSeries.new('{"name":"Badge In Series"}', nil)
       expect(badge.series).to eq :the_series
     end
 
     it "defines the series on subclasses" do
-      class BadgeSubclassInSeries < BadgeInSeries; end
+      module StackOverflow; class BadgeSubclassInSeries < BadgeInSeries; end; end
 
-      badge = BadgeSubclassInSeries.new('{"name":"Badge Subclass In Series"}', nil)
+      badge = StackOverflow::BadgeSubclassInSeries.new('{"name":"Badge Subclass In Series"}', nil)
       expect(badge.series).to eq :the_series
     end
 
@@ -137,24 +141,24 @@ describe Badge do
   end
 
   describe "<=>" do
-    bronze = Badge.new({"name" => "Badge", "rank" => "bronze"}, nil)
-    silver = Badge.new({"name" => "Badge", "rank" => "silver"}, nil)
-    gold   = Badge.new({"name" => "Badge", "rank" => "gold"}, nil)
+    bronze = StackOverflow::Badge.new({"name" => "Badge", "rank" => "bronze"}, nil)
+    silver = StackOverflow::Badge.new({"name" => "Badge", "rank" => "silver"}, nil)
+    gold   = StackOverflow::Badge.new({"name" => "Badge", "rank" => "gold"}, nil)
 
     specify { expect(bronze < silver).to be_true }
     specify { expect(silver < gold).to be_true }
     specify { expect(bronze < gold).to be_true }
 
     it "compares identity with ==" do
-      bronze2 = Badge.new({"name" => "Badge", "rank" => "bronze"}, nil)
+      bronze2 = StackOverflow::Badge.new({"name" => "Badge", "rank" => "bronze"}, nil)
       expect(bronze == bronze2).to be_false
     end
   end
 
   describe "#first_badges_in_series" do
-    let(:bronze) { Badge.new({"name" => "Badge", "rank" => "bronze"}, nil) }
-    let(:silver) { Badge.new({"name" => "Badge", "rank" => "silver"}, nil) }
-    let(:gold)   { Badge.new({"name" => "Badge", "rank" => "gold"}, nil) }
+    let(:bronze) { StackOverflow::Badge.new({"name" => "Badge", "rank" => "bronze"}, nil) }
+    let(:silver) { StackOverflow::Badge.new({"name" => "Badge", "rank" => "silver"}, nil) }
+    let(:gold)   { StackOverflow::Badge.new({"name" => "Badge", "rank" => "gold"}, nil) }
 
     let(:badges) { [bronze, silver, gold] }
 
@@ -164,7 +168,7 @@ describe Badge do
         silver.stub(:series) { :test_series }
         gold.stub(:series) { :test_series }
 
-        expect(Badge.first_badges_in_series(badges)).to eq [bronze]
+        expect(StackOverflow::Badge.first_badges_in_series(badges)).to eq [bronze]
       end
     end
 
@@ -174,7 +178,7 @@ describe Badge do
         silver.stub(:series) { :second }
         gold.stub(:series) { :third }
 
-        expect(Badge.first_badges_in_series(badges)).to eq [bronze, silver, gold]
+        expect(StackOverflow::Badge.first_badges_in_series(badges)).to eq [bronze, silver, gold]
       end
     end
 
@@ -184,7 +188,7 @@ describe Badge do
         silver.stub(:series) { :silver }
         gold.stub(:series) { :silver }
 
-        expect(Badge.first_badges_in_series(badges)).to eq [bronze, silver]
+        expect(StackOverflow::Badge.first_badges_in_series(badges)).to eq [bronze, silver]
       end
     end
 
@@ -194,7 +198,7 @@ describe Badge do
         silver.stub(:series) { nil }
         gold.stub(:series) { nil }
 
-        expect(Badge.first_badges_in_series(badges)).to eq [bronze, silver, gold]
+        expect(StackOverflow::Badge.first_badges_in_series(badges)).to eq [bronze, silver, gold]
       end
     end
   end

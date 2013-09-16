@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class Student < Badge
+class StackOverflow::Student < StackOverflow::Badge
 
   def progress_title
     "You're getting close to..."

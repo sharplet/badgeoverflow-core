@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class PopularQuestion < Badge
+class StackOverflow::PopularQuestion < StackOverflow::Badge
   def series
     :popular_question
   end
@@ -46,13 +46,13 @@ class PopularQuestion < Badge
   end
 end
 
-class NotableQuestion < PopularQuestion
+class StackOverflow::NotableQuestion < StackOverflow::PopularQuestion
   def required_views
     2500
   end
 end
 
-class FamousQuestion < PopularQuestion
+class StackOverflow::FamousQuestion < StackOverflow::PopularQuestion
   def required_views
     10000
   end

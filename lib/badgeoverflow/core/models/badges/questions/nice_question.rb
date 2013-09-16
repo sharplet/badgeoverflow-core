@@ -1,6 +1,6 @@
 require_relative '../badge'
 
-class NiceQuestion < Badge
+class StackOverflow::NiceQuestion < StackOverflow::Badge
   def series
     :nice_question
   end
@@ -34,13 +34,13 @@ class NiceQuestion < Badge
   end
 end
 
-class GoodQuestion < NiceQuestion
+class StackOverflow::GoodQuestion < StackOverflow::NiceQuestion
   def required_score
     25
   end
 end
 
-class GreatQuestion < NiceQuestion
+class StackOverflow::GreatQuestion < StackOverflow::NiceQuestion
   def required_score
     100
   end

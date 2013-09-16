@@ -1,7 +1,6 @@
 require_relative '../badge'
 
-class Teacher < Badge
-
+class StackOverflow::Teacher < StackOverflow::Badge
   def calculate_progress!
     answer = service.fetch('users', 'answers', {
       ids: user_id,

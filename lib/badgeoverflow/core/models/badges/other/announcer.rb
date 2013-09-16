@@ -1,13 +1,13 @@
 require_relative '../badge'
 
-class Announcer < Badge
+class StackOverflow::Announcer < StackOverflow::Badge
   def series
     :announcer
   end
 end
 
-class Booster < Announcer
+class StackOverflow::Booster < StackOverflow::Announcer
 end
 
-class Publicist < Announcer
+class StackOverflow::Publicist < StackOverflow::Announcer
 end

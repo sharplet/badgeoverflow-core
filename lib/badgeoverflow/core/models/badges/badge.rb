@@ -1,7 +1,10 @@
 require 'sanitize'
 require 'cgi'
 
-class Badge
+module StackOverflow
+end
+
+class StackOverflow::Badge
   include Comparable
   RANK_INDEX = { "bronze" => 0, "silver" => 1, "gold" => 2 }
 
@@ -15,7 +18,7 @@ class Badge
   end
 
   def <=>(other_badge)
-    if other_badge.kind_of? Badge
+    if other_badge.kind_of? StackOverflow::Badge
       rank_comparison = RANK_INDEX[self.rank] <=> RANK_INDEX[other_badge.rank]
 
       if rank_comparison == 0
@@ -102,10 +105,10 @@ class Badge
     def badge_class_from_name(name)
       constant_name = constantise(name)
 
-      if const_defined?(constant_name)
-        badge_class = const_get(constant_name)
+      if StackOverflow.const_defined?(constant_name)
+        badge_class = StackOverflow.const_get(constant_name)
 
-        if badge_class.ancestors.include?(Badge)
+        if badge_class.ancestors.include?(StackOverflow::Badge)
           badge_class
         end
       end

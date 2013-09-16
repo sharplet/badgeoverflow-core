@@ -1,13 +1,13 @@
 require_relative '../badge'
 
-class CitizenPatrol < Badge
+class StackOverflow::CitizenPatrol < StackOverflow::Badge
   def series
     :citizen_patrol
   end
 end
 
-class Deputy < CitizenPatrol
+class StackOverflow::Deputy < StackOverflow::CitizenPatrol
 end
 
-# class Marshal < CitizenPatrol
-# end
+class StackOverflow::Marshal < StackOverflow::CitizenPatrol
+end

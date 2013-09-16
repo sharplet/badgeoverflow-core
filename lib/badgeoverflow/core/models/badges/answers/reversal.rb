@@ -1,7 +1,7 @@
 require_relative '../badge'
 require 'badgeoverflow/helpers'
 
-class Reversal < Badge
+class StackOverflow::Reversal < StackOverflow::Badge
   REQUIRED_SCORE = 20
 
   def progress_title

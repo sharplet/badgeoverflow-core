@@ -1,10 +1,10 @@
 require_relative '../badge'
 
-class Commentator < Badge
+class StackOverflow::Commentator < StackOverflow::Badge
   def series
     :commentator
   end
 end
 
-class Pundit < Commentator
+class StackOverflow::Pundit < StackOverflow::Commentator
 end
