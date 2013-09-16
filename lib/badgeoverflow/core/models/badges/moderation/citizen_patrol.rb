@@ -9,5 +9,5 @@ end
 class Deputy < CitizenPatrol
 end
 
-class Marshal < CitizenPatrol
-end
+# class Marshal < CitizenPatrol
+# end
