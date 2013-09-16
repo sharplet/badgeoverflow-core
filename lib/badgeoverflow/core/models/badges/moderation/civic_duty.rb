@@ -36,12 +36,8 @@ class CivicDuty < Badge
   end
 end
 
-class Electorate < CivicDuty
-  def progress_title
-    "Have you considered..."
-  end
-
-  def calculate_progress!
-    self.progress_description = description
+class Electorate < Badge
+  def series
+    :civic_duty
   end
 end
