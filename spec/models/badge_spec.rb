@@ -148,11 +148,6 @@ describe StackOverflow::Badge do
     specify { expect(bronze < silver).to be_true }
     specify { expect(silver < gold).to be_true }
     specify { expect(bronze < gold).to be_true }
-
-    it "compares identity with ==" do
-      bronze2 = StackOverflow::Badge.new({"name" => "Badge", "rank" => "bronze"}, nil)
-      expect(bronze == bronze2).to be_false
-    end
   end
 
   describe "#first_badges_in_series" do
