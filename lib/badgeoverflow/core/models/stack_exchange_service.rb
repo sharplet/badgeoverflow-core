@@ -4,7 +4,7 @@ require 'json'
 class StackExchangeService
   attr_reader :site, :api_version
 
-  def initialize(site = 'stackoverflow', api_version = 2.1)
+  def initialize(site = 'stackoverflow', api_version = 2.2)
     @site = site
     @api_version = api_version
 
