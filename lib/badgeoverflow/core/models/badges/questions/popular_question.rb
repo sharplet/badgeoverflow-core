@@ -42,7 +42,7 @@ class StackOverflow::PopularQuestion < StackOverflow::Badge
   end
 
   def service
-    @service ||= StackExchangeService.new('stackoverflow')
+    @service ||= StackExchangeService.new
   end
 end
 

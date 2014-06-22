@@ -56,7 +56,7 @@ class StackOverflow::Badge
   end
 
   def service
-    @service ||= StackExchangeService.new('stackoverflow')
+    @service ||= StackExchangeService.new
   end
 
   def badge_id;    @data['badge_id'];    end

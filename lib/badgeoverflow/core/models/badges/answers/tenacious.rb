@@ -73,7 +73,7 @@ class StackOverflow::Tenacious < StackOverflow::Badge
   end
 
   def service
-    @service ||= StackExchangeService.new('stackoverflow')
+    @service ||= StackExchangeService.new
   end
 end
 
