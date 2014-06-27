@@ -11,6 +11,10 @@ class BadgeOverflowConfig
     instance.user_id
   end
 
+  def self.site
+    instance.site
+  end
+
   def initialize(config_file)
     @config_file = config_file
   end
@@ -18,6 +22,10 @@ class BadgeOverflowConfig
   def user_id
     @user_id ||= config['user_id']
     @user_id ||= random_user
+  end
+
+  def site
+    @site ||= config['site']
   end
 
   private
