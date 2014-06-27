@@ -15,6 +15,10 @@ class BadgeOverflowConfig
     instance.site
   end
 
+  def self.api_key
+    instance.api_key
+  end
+
   def initialize(config_file)
     @config_file = config_file
   end
@@ -26,6 +30,10 @@ class BadgeOverflowConfig
 
   def site
     @site ||= config['site']
+  end
+
+  def api_key
+    @api_key ||= config['api_key']
   end
 
   private

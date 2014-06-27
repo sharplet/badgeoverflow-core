@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+require 'badgeoverflow/core/config'
 
 class StackExchangeService
   attr_reader :site, :api_version
@@ -7,10 +8,7 @@ class StackExchangeService
   def initialize(site = 'stackoverflow', api_version = 2.2)
     @site = site
     @api_version = api_version
-
-    if File.exist?('config/badgeoverflow.yml')
-      @api_key = YAML.load(File.read('config/badgeoverflow.yml'))['api_key']
-    end
+    @api_key = BadgeOverflowConfig.api_key
   end
 
   # Fetches 1 or more of a given resource.
