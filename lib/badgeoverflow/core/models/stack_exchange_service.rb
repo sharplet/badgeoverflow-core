@@ -5,8 +5,8 @@ require 'badgeoverflow/core/config'
 class StackExchangeService
   attr_reader :site, :api_version
 
-  def initialize(site = 'stackoverflow', api_version = 2.2)
-    @site = site
+  def initialize(site = nil, api_version = 2.2)
+    @site = site || BadgeOverflowConfig.site || 'stackoverflow'
     @api_version = api_version
     @api_key = BadgeOverflowConfig.api_key
   end
