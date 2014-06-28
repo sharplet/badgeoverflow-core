@@ -33,10 +33,8 @@ class StackExchangeService
     end
 
     page = 1
-    fetch_all_pages = params.delete(:fetch_all_pages)
-    fetch_all_pages = true if fetch_all_pages.nil?
-
     items = []
+    should_fetch_more = create_fetch_more_condition(params)
 
     loop do
       response = get(primary_resource, secondary_resource, params.merge(page: page))
@@ -50,7 +48,7 @@ class StackExchangeService
 
       page += 1
 
-      if fetch_all_pages && body['has_more']
+      if fetch_more?(current: body, fetched: items, pred: should_fetch_more)
         backoff = body['backoff']
         if backoff
           sleep backoff
@@ -68,6 +66,29 @@ class StackExchangeService
   end
 
   private
+  
+  def fetch_more?(current: {}, fetched: [], pred: ->{ true })
+    case pred.arity
+    when 0
+      pred.()
+    when 1
+      pred.(current)
+    when 2
+      pred.(current, fetched)
+    else
+      fail "invalid predicate"
+    end
+  end
+
+  def create_fetch_more_condition(params)
+    fetch_all_pages = params.delete(:fetch_all_pages)
+    fetch_all_pages = true if fetch_all_pages.nil?
+    limit = params.delete(:limit)
+
+    ->(body) {
+      fetch_all_pages && body['has_more']
+    }
+  end
 
   def get(primary_resource, secondary_resource, params = {})
     ids = *params.delete(:ids)
