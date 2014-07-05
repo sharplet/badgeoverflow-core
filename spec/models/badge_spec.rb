@@ -145,9 +145,9 @@ describe StackOverflow::Badge do
     silver = StackOverflow::Badge.new({"name" => "Badge", "rank" => "silver"}, nil)
     gold   = StackOverflow::Badge.new({"name" => "Badge", "rank" => "gold"}, nil)
 
-    specify { expect(bronze < silver).to be_true }
-    specify { expect(silver < gold).to be_true }
-    specify { expect(bronze < gold).to be_true }
+    specify { expect(bronze).to be < silver }
+    specify { expect(silver).to be < gold }
+    specify { expect(bronze).to be < gold }
   end
 
   describe "#first_badges_in_series" do
