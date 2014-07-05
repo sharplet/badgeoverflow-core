@@ -77,6 +77,7 @@ class StackExchangeService
     path << "#{secondary_resource}/" if secondary_resource
 
     final_params = default_params.merge(params)
+    final_params.delete(:site) if primary_resource == 'sites'
 
     stack_exchange.get("#{path}?#{param_string(final_params)}")
   end
