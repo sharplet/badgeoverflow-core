@@ -2,8 +2,11 @@ require 'spec_helper'
 require 'badgeoverflow/core/models/stack_exchange_service'
 
 describe StackExchangeService, '#fetch' do
-  BASE_URL = "http://api.stackexchange.com/2.1"
-  PARAMS = { site: "stackoverflow", page: 1, pagesize: 30 }
+  BASE_URL = "http://api.stackexchange.com/2.2"
+  PARAMS = { site: "stackoverflow",
+             page: 1,
+             pagesize: 30,
+             key: BadgeOverflowConfig.api_key }
 
   def url_with(resource, params = nil)
     params ||= Hash.new
